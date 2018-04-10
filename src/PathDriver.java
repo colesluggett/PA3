@@ -49,16 +49,17 @@ public class PathDriver {
 
 		// to view the matrix
 		for (int r = 0; r < adjMat.length; r++) {
-			System.out.print("\n" + vertices[r] + ": ");
+			//System.out.print("\n" + vertices[r] + ": ");
 			for (int c = 0; c < adjMat[r].length; c++) {
-				System.out.print(adjMat[r][c] + ", ");
+				//System.out.print(adjMat[r][c] + ", ");
 			}
 		}
 		
 		Prims prim = new Prims(vertices, adjMat);
 		System.out.println();
 		prim.getPath();
-		
+                System.out.println();
+                Floyd floyd = new Floyd(adjMat);		
 	}
 
 }
