@@ -21,36 +21,38 @@ import java.io.UnsupportedEncodingException;
 //                end if 
 //END
 public class Floyd {
-    private int[][] dist;
-    String infinitySymbol = null;
-    char[] header = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    private int[][] dist; // Initilize dist, "d" in pseudocode
+    String infinitySymbol = null; //Initilize infinity symbol
+    //Creates char array, so input file can have 26 rows and columns
+    char[] header = "abcdefghijklmnopqrstuvwxyz".toCharArray();  
 
-    public Floyd(int[][] amIn) {
+    public Floyd(int[][] amIn) { //Constructor
         dist = amIn;
         run();
     }
     
     public void run() {
-        try {
+        try { //Get infinity symbol
             infinitySymbol = new String(String.valueOf(Character.toString('\u221E')).getBytes("UTF-8"), "UTF-8");
         } catch (UnsupportedEncodingException ex) {
-            infinitySymbol = "?";
+            infinitySymbol = "?"; //If can't show infinity symbol, show "?"
         }
         for(int i=0;i<dist.length;i++) {
             for(int j=0;j<dist[i].length;j++) {
-                if(dist[i][j] == Integer.MAX_VALUE)
-                    dist[i][j] = 99999;
+                if(dist[i][j] == Integer.MAX_VALUE) //Checks if value is max_value
+                    dist[i][j] = 99999; //Sets max_value to 9999 to avoid overflow
             }
         }
         for(int i=0;i<dist.length;i++) {
-            dist[i][i] = 0; 
+            dist[i][i] = 0; //Sets the diagnal to 0, as the length to itself is 0
         } 
-        for(int k=0;k<dist.length;k++) {
+        for(int k=0;k<dist.length;k++) { 
             for(int i=0;i<dist.length;i++) {
                 for(int j=0;j<dist.length;j++) {
-                    if(dist[i][j] > dist[i][k] + dist[k][j]) {
-                        dist[i][j] = dist[i][k] + dist[k][j];
-                        print();
+                    //Compares the current distance to the going through other points
+                    if(dist[i][j] > dist[i][k] + dist[k][j]) {  
+                        dist[i][j] = dist[i][k] + dist[k][j]; //Sets new shorter distance
+                        print(); //Prints table
                     }
                 }
             }
@@ -58,18 +60,18 @@ public class Floyd {
     }
     
     public void print() {
-        System.out.printf("%-3s"," ");
+        System.out.printf("%-3s"," "); //Prints empty space at header start
         for(int i=0;i<dist.length;i++) {
-            System.out.printf("%-4s",header[i]);
+            System.out.printf("%-4s",header[i]); //Prints header
         }
         System.out.println();
         for(int i=0;i<dist.length;i++) {
-            System.out.printf("%-3s",header[i]);
+            System.out.printf("%-3s",header[i]); //Print row header
             for(int j=0;j<dist[i].length;j++) {  
                 if(dist[i][j] == 99999)
-                    System.out.printf("%-4s",infinitySymbol);
+                    System.out.printf("%-4s",infinitySymbol); //Prints infinity symbol
                 else
-                    System.out.printf("%-4d", dist[i][j]);
+                    System.out.printf("%-4d", dist[i][j]); //Prints number in array
             }
             System.out.println();
         }
