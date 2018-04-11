@@ -1,5 +1,14 @@
 import java.util.ArrayList;
 
+/* 
+* Authors: Cole Sluggett, John Dickson, Zachariah Fahsi
+* Date: 4/10/18
+* Overview: Runs the Prim’s Algorithm to find the 
+* minimum spanning tree on a weighted, undirected graph
+* 
+* Uses input1.txt to match the given example
+*/
+
 public class Prims {
 
 	private int[][] am;
