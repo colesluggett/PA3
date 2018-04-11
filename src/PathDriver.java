@@ -58,8 +58,9 @@ public class PathDriver {
 		Prims prim = new Prims(vertices, adjMat);
 		System.out.println();
 		prim.getPath();
-                System.out.println();
-                Floyd floyd = new Floyd(adjMat);		
+		System.out.println();
+		Floyd floyd = new Floyd(adjMat);
+		Kruskals kruskals = new Kruskals(vertices, adjMat);
 	}
 
 }
